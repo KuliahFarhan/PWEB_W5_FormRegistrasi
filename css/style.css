@@ -1,0 +1,353 @@
+/* ===== SIMPLE CSS ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+  background: #f5f5f5;
+  color: #333;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* ===== HEADER ===== */
+header {
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  padding-left: 0;
+}
+
+.tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.tab {
+  border: none;
+  background: none;
+  padding: 10px 20px;
+  font-size: 15px;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s;
+}
+
+.tab:hover {
+  background: #f9f9f9;
+}
+
+.tab.active {
+  border-bottom-color: #0066cc;
+  color: #0066cc;
+  font-weight: 600;
+}
+
+/* ===== SECTIONS & LAYOUT ===== */
+.section {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: none;
+}
+
+.section.active,
+.section[style*="display: block"] {
+  display: block;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+h3 {
+  font-size: 16px;
+  margin: 25px 0 15px 0;
+  color: #222;
+}
+
+/* ===== FORMS ===== */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.form-group > div {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+select:focus {
+  outline: none;
+  border-color: #0066cc;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+/* ===== AUTOCOMPLETE ===== */
+.autocomplete-list {
+  list-style: none;
+  background: white;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  max-height: 150px;
+  overflow-y: auto;
+  display: none;
+}
+
+.autocomplete-list div {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.autocomplete-list div:hover {
+  background: #f0f0f0;
+}
+
+/* ===== BUTTONS ===== */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-danger {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background: #0066cc;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #0052a3;
+}
+
+.btn-secondary {
+  background: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.btn-secondary:hover {
+  background: #e0e0e0;
+}
+
+.btn-danger {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover {
+  background: #c82333;
+}
+
+/* ===== TABLE ===== */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.table th {
+  background: #f0f0f0;
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid #ddd;
+}
+
+.table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.table tr:hover {
+  background: #f9f9f9;
+}
+
+button.btn-primary[onclick*="delete"],
+button[onclick*="delete"] {
+  background: #dc3545;
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+button.btn-primary[onclick*="delete"]:hover,
+button[onclick*="delete"]:hover {
+  background: #c82333;
+}
+
+/* ===== PRODUCTS GRID ===== */
+#product-list {
+  margin-top: 20px;
+}
+
+#product-list h4 {
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+#product-list > div {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+#product-list > div > div {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 6px;
+  background: #f9f9f9;
+}
+
+#product-list > div > div:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+
+#product-list strong {
+  display: block;
+  margin: 8px 0;
+  font-size: 15px;
+}
+
+#product-list p {
+  margin: 5px 0;
+  font-size: 13px;
+}
+
+/* ===== RESULTS ===== */
+#postal-result {
+  background: #f0f8ff;
+  padding: 15px;
+  border-radius: 6px;
+  margin-top: 15px;
+  border-left: 4px solid #0066cc;
+}
+
+#postal-result p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+#postal-table {
+  margin-top: 15px;
+}
+
+#postal-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+#postal-table th {
+  background: #f0f0f0;
+  padding: 10px;
+  border-bottom: 2px solid #ddd;
+  font-weight: 600;
+  text-align: left;
+}
+
+#postal-table td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  .section {
+    padding: 15px;
+  }
+
+  .tabs {
+    overflow-x: auto;
+  }
+
+  .tab {
+    padding: 10px 15px;
+    font-size: 13px;
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+
+  h2 {
+    font-size: 16px;
+  }
+
+  input[type="text"],
+  select {
+    font-size: 16px;
+  }
+
+  #product-list > div {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+  }
+
+  .table {
+    font-size: 13px;
+  }
+
+  .table td,
+  .table th {
+    padding: 8px;
+  }
+}

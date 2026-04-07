@@ -1,0 +1,148 @@
+{
+  "laptop": {
+    "merek": {
+      "asus": {
+        "label": "ASUS",
+        "seri": {
+          "ROG Zephyrus": {
+            "products": [
+              { "name": "ROG Zephyrus G14 2024", "price": "Rp 22.999.000", "icon": "💻", "spec": "AMD Ryzen 9 8945HS · RTX 4060 · 16GB RAM · 1TB SSD", "color": "#ef4444" },
+              { "name": "ROG Zephyrus G16 2024", "price": "Rp 28.999.000", "icon": "💻", "spec": "Intel Core Ultra 9 · RTX 4080 · 32GB RAM · 2TB SSD", "color": "#ef4444" }
+            ]
+          },
+          "VivoBook": {
+            "products": [
+              { "name": "VivoBook 15 OLED", "price": "Rp 8.499.000", "icon": "💻", "spec": "AMD Ryzen 5 7530U · Radeon · 8GB RAM · 512GB SSD", "color": "#3b82f6" },
+              { "name": "VivoBook Pro 16X", "price": "Rp 17.999.000", "icon": "💻", "spec": "AMD Ryzen 9 7745HX · RTX 4060 · 16GB RAM · 1TB SSD", "color": "#3b82f6" }
+            ]
+          },
+          "ZenBook": {
+            "products": [
+              { "name": "ZenBook 14 OLED", "price": "Rp 14.999.000", "icon": "💻", "spec": "Intel Core Ultra 7 · Intel Arc · 16GB RAM · 1TB SSD", "color": "#8b5cf6" }
+            ]
+          }
+        }
+      },
+      "lenovo": {
+        "label": "Lenovo",
+        "seri": {
+          "ThinkPad": {
+            "products": [
+              { "name": "ThinkPad X1 Carbon Gen 12", "price": "Rp 24.999.000", "icon": "💻", "spec": "Intel Core Ultra 7 · Intel Iris Xe · 16GB RAM · 512GB SSD", "color": "#1e293b" },
+              { "name": "ThinkPad T14s Gen 5", "price": "Rp 18.499.000", "icon": "💻", "spec": "AMD Ryzen 7 PRO 8840U · 16GB RAM · 512GB SSD", "color": "#1e293b" }
+            ]
+          },
+          "IdeaPad": {
+            "products": [
+              { "name": "IdeaPad Gaming 3i", "price": "Rp 12.999.000", "icon": "💻", "spec": "Intel Core i5-13420H · RTX 3050 · 16GB RAM · 512GB SSD", "color": "#16a34a" },
+              { "name": "IdeaPad Slim 5", "price": "Rp 9.499.000", "icon": "💻", "spec": "AMD Ryzen 5 7530U · 8GB RAM · 512GB SSD", "color": "#16a34a" }
+            ]
+          }
+        }
+      },
+      "hp": {
+        "label": "HP",
+        "seri": {
+          "Pavilion": {
+            "products": [
+              { "name": "HP Pavilion 15", "price": "Rp 8.999.000", "icon": "💻", "spec": "AMD Ryzen 5 7530U · AMD Radeon · 8GB RAM · 512GB SSD", "color": "#0ea5e9" }
+            ]
+          },
+          "OMEN": {
+            "products": [
+              { "name": "HP OMEN 16", "price": "Rp 21.499.000", "icon": "💻", "spec": "AMD Ryzen 7 7745HX · RTX 4070 · 16GB RAM · 1TB SSD", "color": "#ef4444" },
+              { "name": "HP OMEN Transcend 14", "price": "Rp 26.999.000", "icon": "💻", "spec": "Intel Core Ultra 9 · RTX 4070 · 32GB RAM · 2TB SSD", "color": "#ef4444" }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "smartphone": {
+    "merek": {
+      "samsung": {
+        "label": "Samsung",
+        "seri": {
+          "Galaxy S Series": {
+            "products": [
+              { "name": "Galaxy S25 Ultra", "price": "Rp 19.999.000", "icon": "📱", "spec": "Snapdragon 8 Elite · 12GB RAM · 256GB · 200MP Camera", "color": "#1a1a2e" },
+              { "name": "Galaxy S25+", "price": "Rp 15.999.000", "icon": "📱", "spec": "Snapdragon 8 Elite · 12GB RAM · 256GB · 50MP Camera", "color": "#16213e" },
+              { "name": "Galaxy S25", "price": "Rp 12.999.000", "icon": "📱", "spec": "Snapdragon 8 Elite · 12GB RAM · 128GB · 50MP Camera", "color": "#0f3460" }
+            ]
+          },
+          "Galaxy A Series": {
+            "products": [
+              { "name": "Galaxy A55", "price": "Rp 5.999.000", "icon": "📱", "spec": "Exynos 1480 · 8GB RAM · 128GB · 50MP Camera", "color": "#1a1a2e" },
+              { "name": "Galaxy A35", "price": "Rp 4.499.000", "icon": "📱", "spec": "Exynos 1380 · 8GB RAM · 128GB · 50MP Camera", "color": "#16213e" }
+            ]
+          }
+        }
+      },
+      "apple": {
+        "label": "Apple",
+        "seri": {
+          "iPhone 16 Series": {
+            "products": [
+              { "name": "iPhone 16 Pro Max", "price": "Rp 23.999.000", "icon": "📱", "spec": "Apple A18 Pro · 8GB RAM · 256GB · 48MP ProRAW", "color": "#1c1c1e" },
+              { "name": "iPhone 16 Pro", "price": "Rp 19.999.000", "icon": "📱", "spec": "Apple A18 Pro · 8GB RAM · 128GB · 48MP Camera", "color": "#1c1c1e" },
+              { "name": "iPhone 16", "price": "Rp 14.999.000", "icon": "📱", "spec": "Apple A18 · 8GB RAM · 128GB · 48MP Camera", "color": "#3c3c3e" }
+            ]
+          }
+        }
+      },
+      "xiaomi": {
+        "label": "Xiaomi",
+        "seri": {
+          "Xiaomi 14 Series": {
+            "products": [
+              { "name": "Xiaomi 14 Ultra", "price": "Rp 17.999.000", "icon": "📱", "spec": "Snapdragon 8 Gen 3 · 16GB RAM · 512GB · Leica Camera", "color": "#ff6900" },
+              { "name": "Xiaomi 14T Pro", "price": "Rp 9.999.000", "icon": "📱", "spec": "MediaTek Dimensity 9300+ · 12GB RAM · 256GB", "color": "#ff6900" }
+            ]
+          },
+          "Redmi Note Series": {
+            "products": [
+              { "name": "Redmi Note 13 Pro+", "price": "Rp 4.999.000", "icon": "📱", "spec": "Snapdragon 7s Gen 2 · 8GB RAM · 256GB · 200MP Camera", "color": "#ff6900" }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "tablet": {
+    "merek": {
+      "apple": {
+        "label": "Apple",
+        "seri": {
+          "iPad Pro": {
+            "products": [
+              { "name": "iPad Pro 13\" (M4)", "price": "Rp 19.999.000", "icon": "🖥️", "spec": "Apple M4 · 8GB RAM · 256GB · Liquid Retina XDR", "color": "#1c1c1e" },
+              { "name": "iPad Pro 11\" (M4)", "price": "Rp 14.999.000", "icon": "🖥️", "spec": "Apple M4 · 8GB RAM · 256GB · Ultra Retina XDR", "color": "#1c1c1e" }
+            ]
+          },
+          "iPad Air": {
+            "products": [
+              { "name": "iPad Air 13\" (M2)", "price": "Rp 12.999.000", "icon": "🖥️", "spec": "Apple M2 · 8GB RAM · 128GB · Liquid Retina", "color": "#5e5ce6" },
+              { "name": "iPad Air 11\" (M2)", "price": "Rp 9.499.000", "icon": "🖥️", "spec": "Apple M2 · 8GB RAM · 128GB · Liquid Retina", "color": "#5e5ce6" }
+            ]
+          }
+        }
+      },
+      "samsung": {
+        "label": "Samsung",
+        "seri": {
+          "Galaxy Tab S": {
+            "products": [
+              { "name": "Galaxy Tab S9 Ultra", "price": "Rp 17.999.000", "icon": "🖥️", "spec": "Snapdragon 8 Gen 2 · 12GB RAM · 256GB · 14.6\" AMOLED", "color": "#1a1a2e" },
+              { "name": "Galaxy Tab S9+", "price": "Rp 13.999.000", "icon": "🖥️", "spec": "Snapdragon 8 Gen 2 · 12GB RAM · 256GB · 12.4\" AMOLED", "color": "#1a1a2e" }
+            ]
+          },
+          "Galaxy Tab A": {
+            "products": [
+              { "name": "Galaxy Tab A9+", "price": "Rp 4.499.000", "icon": "🖥️", "spec": "Snapdragon 695 · 8GB RAM · 128GB · 11\" TFT LCD", "color": "#16213e" }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

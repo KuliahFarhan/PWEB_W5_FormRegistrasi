@@ -1,0 +1,147 @@
+{
+  "Jawa Barat": {
+    "Bandung": {
+      "Cicendo": [
+        { "kelurahan": "Arjuna", "kodepos": "40172" },
+        { "kelurahan": "Husein Sastranegara", "kodepos": "40174" },
+        { "kelurahan": "Pajajaran", "kodepos": "40171" },
+        { "kelurahan": "Pamoyanan", "kodepos": "40173" }
+      ],
+      "Coblong": [
+        { "kelurahan": "Cipaganti", "kodepos": "40131" },
+        { "kelurahan": "Dago", "kodepos": "40135" },
+        { "kelurahan": "Lebak Gede", "kodepos": "40132" },
+        { "kelurahan": "Lebak Siliwangi", "kodepos": "40133" },
+        { "kelurahan": "Sadang Serang", "kodepos": "40134" }
+      ],
+      "Bandung Wetan": [
+        { "kelurahan": "Cihapit", "kodepos": "40114" },
+        { "kelurahan": "Citarum", "kodepos": "40115" },
+        { "kelurahan": "Tamansari", "kodepos": "40116" }
+      ]
+    },
+    "Bogor": {
+      "Bogor Tengah": [
+        { "kelurahan": "Babakan", "kodepos": "16121" },
+        { "kelurahan": "Cibogor", "kodepos": "16122" },
+        { "kelurahan": "Paledang", "kodepos": "16123" },
+        { "kelurahan": "Sempur", "kodepos": "16129" }
+      ],
+      "Bogor Utara": [
+        { "kelurahan": "Tanah Baru", "kodepos": "16152" },
+        { "kelurahan": "Tegallega", "kodepos": "16153" },
+        { "kelurahan": "Ciluar", "kodepos": "16154" }
+      ]
+    }
+  },
+  "Jawa Timur": {
+    "Surabaya": {
+      "Genteng": [
+        { "kelurahan": "Embong Kaliasin", "kodepos": "60271" },
+        { "kelurahan": "Genteng", "kodepos": "60275" },
+        { "kelurahan": "Kapasari", "kodepos": "60274" },
+        { "kelurahan": "Peneleh", "kodepos": "60272" }
+      ],
+      "Gubeng": [
+        { "kelurahan": "Airlangga", "kodepos": "60286" },
+        { "kelurahan": "Baratajaya", "kodepos": "60284" },
+        { "kelurahan": "Gubeng", "kodepos": "60281" },
+        { "kelurahan": "Kertajaya", "kodepos": "60282" },
+        { "kelurahan": "Mojo", "kodepos": "60285" },
+        { "kelurahan": "Pucangsewu", "kodepos": "60283" }
+      ]
+    },
+    "Malang": {
+      "Klojen": [
+        { "kelurahan": "Bareng", "kodepos": "65116" },
+        { "kelurahan": "Gadingkasri", "kodepos": "65115" },
+        { "kelurahan": "Kasin", "kodepos": "65117" },
+        { "kelurahan": "Klojen", "kodepos": "65119" },
+        { "kelurahan": "Rampalcelaket", "kodepos": "65118" }
+      ],
+      "Lowokwaru": [
+        { "kelurahan": "Dinoyo", "kodepos": "65144" },
+        { "kelurahan": "Jatimulyo", "kodepos": "65141" },
+        { "kelurahan": "Ketawanggede", "kodepos": "65145" },
+        { "kelurahan": "Lowokwaru", "kodepos": "65143" },
+        { "kelurahan": "Mojolangu", "kodepos": "65142" },
+        { "kelurahan": "Tasikmadu", "kodepos": "65146" },
+        { "kelurahan": "Tlogomas", "kodepos": "65144" }
+      ]
+    }
+  },
+  "DKI Jakarta": {
+    "Jakarta Pusat": {
+      "Gambir": [
+        { "kelurahan": "Cideng", "kodepos": "10150" },
+        { "kelurahan": "Duri Pulo", "kodepos": "10140" },
+        { "kelurahan": "Gambir", "kodepos": "10110" },
+        { "kelurahan": "Kebon Kelapa", "kodepos": "10120" },
+        { "kelurahan": "Petojo Selatan", "kodepos": "10160" },
+        { "kelurahan": "Petojo Utara", "kodepos": "10130" }
+      ],
+      "Tanah Abang": [
+        { "kelurahan": "Bendungan Hilir", "kodepos": "10210" },
+        { "kelurahan": "Gelora", "kodepos": "10270" },
+        { "kelurahan": "Karet Tengsin", "kodepos": "10220" },
+        { "kelurahan": "Kebon Melati", "kodepos": "10230" },
+        { "kelurahan": "Petamburan", "kodepos": "10260" },
+        { "kelurahan": "Tanah Abang", "kodepos": "10250" }
+      ]
+    },
+    "Jakarta Selatan": {
+      "Tebet": [
+        { "kelurahan": "Bukit Duri", "kodepos": "12840" },
+        { "kelurahan": "Kebon Baru", "kodepos": "12830" },
+        { "kelurahan": "Manggarai", "kodepos": "12850" },
+        { "kelurahan": "Tebet Barat", "kodepos": "12810" },
+        { "kelurahan": "Tebet Timur", "kodepos": "12820" }
+      ],
+      "Kebayoran Baru": [
+        { "kelurahan": "Gandaria Utara", "kodepos": "12140" },
+        { "kelurahan": "Gunung", "kodepos": "12120" },
+        { "kelurahan": "Kramat Pela", "kodepos": "12130" },
+        { "kelurahan": "Melawai", "kodepos": "12160" },
+        { "kelurahan": "Pulo", "kodepos": "12160" },
+        { "kelurahan": "Rawa Barat", "kodepos": "12180" },
+        { "kelurahan": "Senayan", "kodepos": "12190" },
+        { "kelurahan": "Selong", "kodepos": "12110" }
+      ]
+    }
+  },
+  "Bali": {
+    "Denpasar": {
+      "Denpasar Barat": [
+        { "kelurahan": "Dauh Puri Kaja", "kodepos": "80113" },
+        { "kelurahan": "Dauh Puri Kangin", "kodepos": "80114" },
+        { "kelurahan": "Pemecutan", "kodepos": "80116" },
+        { "kelurahan": "Pemecutan Kaja", "kodepos": "80117" },
+        { "kelurahan": "Tegal Harum", "kodepos": "80118" }
+      ],
+      "Denpasar Selatan": [
+        { "kelurahan": "Panjer", "kodepos": "80234" },
+        { "kelurahan": "Pedungan", "kodepos": "80222" },
+        { "kelurahan": "Renon", "kodepos": "80226" },
+        { "kelurahan": "Serangan", "kodepos": "80229" },
+        { "kelurahan": "Sesetan", "kodepos": "80223" },
+        { "kelurahan": "Sidakarya", "kodepos": "80224" }
+      ]
+    }
+  },
+  "Yogyakarta": {
+    "Kota Yogyakarta": {
+      "Gondokusuman": [
+        { "kelurahan": "Baciro", "kodepos": "55225" },
+        { "kelurahan": "Demangan", "kodepos": "55221" },
+        { "kelurahan": "Klitren", "kodepos": "55222" },
+        { "kelurahan": "Kotabaru", "kodepos": "55224" },
+        { "kelurahan": "Terban", "kodepos": "55223" }
+      ],
+      "Kraton": [
+        { "kelurahan": "Kadipaten", "kodepos": "55132" },
+        { "kelurahan": "Panembahan", "kodepos": "55131" },
+        { "kelurahan": "Patehan", "kodepos": "55133" }
+      ]
+    }
+  }
+}
