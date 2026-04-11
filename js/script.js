@@ -1,7 +1,6 @@
 // ===== SIMPLE APP =====
 let mahasiswa = [];
 let dosen = [];
-let postalData = {};
 let products = {};
 let registeredStudents = [];
 
@@ -9,7 +8,6 @@ let registeredStudents = [];
 async function loadData() {
   mahasiswa = await fetch('./data/mahasiswa.json').then(r => r.json());
   dosen = await fetch('./data/dosen.json').then(r => r.json());
-  postalData = await fetch('./data/postal.json').then(r => r.json());
   products = await fetch('./data/products.json').then(r => r.json());
 }
 
@@ -118,7 +116,7 @@ function clearAll() {
 }
 
 // ===== POSTAL CODE =====
-function updateCity() {
+async function updateCity() {
   const prov = document.getElementById('provinsi').value;
   const citySelect = document.getElementById('kota');
   const districtSelect = document.getElementById('kecamatan');
@@ -128,35 +126,69 @@ function updateCity() {
   districtSelect.disabled = true;
   
   if (!prov) return;
-  
-  Object.keys(postalData[prov]).forEach(kota => {
-    const opt = document.createElement('option');
-    opt.value = kota;
-    opt.textContent = kota;
-    citySelect.appendChild(opt);
-  });
+
+  citySelect.innerHTML = '<option value="">Memuat...</option>';
+  citySelect.disabled = true;
+
+  try {
+    const data = await fetch(`https://kodepos.vercel.app/search/?q=${encodeURIComponent(prov)}`).then(r => {
+      if (!r.ok) throw new Error('Gagal mengambil data kota');
+      return r.json();
+    });
+
+    const uniqueCities = [...new Set(data.map(item => item.city).filter(Boolean))].sort();
+
+    citySelect.innerHTML = '<option value="">-- Pilih Kota --</option>';
+    uniqueCities.forEach(kota => {
+      const opt = document.createElement('option');
+      opt.value = kota;
+      opt.textContent = kota;
+      citySelect.appendChild(opt);
+    });
+  } catch (err) {
+    citySelect.innerHTML = '<option value="">-- Pilih Kota --</option>';
+    alert('Gagal memuat daftar kota. Silakan coba lagi.');
+  } finally {
+    citySelect.disabled = false;
+  }
 }
 
-function updateDistrict() {
+async function updateDistrict() {
   const prov = document.getElementById('provinsi').value;
   const kota = document.getElementById('kota').value;
   const districtSelect = document.getElementById('kecamatan');
   
   districtSelect.innerHTML = '<option value="">-- Pilih Kecamatan --</option>';
+  districtSelect.disabled = true;
   
   if (!kota) return;
-  
-  Object.keys(postalData[prov][kota]).forEach(kec => {
-    const opt = document.createElement('option');
-    opt.value = kec;
-    opt.textContent = kec;
-    districtSelect.appendChild(opt);
-  });
-  
-  districtSelect.disabled = false;
+
+  try {
+    const data = await fetch(`https://kodepos.vercel.app/search/?q=${encodeURIComponent(kota)}`).then(r => {
+      if (!r.ok) throw new Error('Gagal mengambil data kecamatan');
+      return r.json();
+    });
+
+    const filtered = data.filter(item =>
+      item.city === kota && (!prov || item.province === prov)
+    );
+
+    const uniqueDistricts = [...new Set(filtered.map(item => item.district).filter(Boolean))].sort();
+
+    uniqueDistricts.forEach(kec => {
+      const opt = document.createElement('option');
+      opt.value = kec;
+      opt.textContent = kec;
+      districtSelect.appendChild(opt);
+    });
+  } catch (err) {
+    alert('Gagal memuat daftar kecamatan. Silakan coba lagi.');
+  } finally {
+    districtSelect.disabled = false;
+  }
 }
 
-function searchPostal() {
+async function searchPostal() {
   const prov = document.getElementById('provinsi').value;
   const kota = document.getElementById('kota').value;
   const kec = document.getElementById('kecamatan').value;
@@ -168,45 +200,66 @@ function searchPostal() {
   
   const resultDiv = document.getElementById('postal-result');
   const tableDiv = document.getElementById('postal-table');
-  
-  if (kec) {
-    const kelList = postalData[prov][kota][kec];
-    if (kelList.length === 1) {
-      const k = kelList[0];
-      resultDiv.innerHTML = `
-        <p><strong>Kode Pos: ${k.kodepos}</strong></p>
-        <p>Kelurahan: ${k.kelurahan}, ${kec}, ${kota}, ${prov}</p>
-      `;
+
+  resultDiv.innerHTML = '<p>Memuat data kode pos...</p>';
+  tableDiv.innerHTML = '';
+
+  try {
+    const query = kec || kota;
+    const data = await fetch(`https://kodepos.vercel.app/search/?q=${encodeURIComponent(query)}`).then(r => {
+      if (!r.ok) throw new Error('Gagal mengambil data kode pos');
+      return r.json();
+    });
+
+    const filtered = data.filter(item => {
+      const matchProv = item.province === prov;
+      const matchCity = item.city === kota;
+      const matchDistrict = kec ? item.district === kec : true;
+      return matchProv && matchCity && matchDistrict;
+    });
+
+    if (filtered.length === 0) {
+      resultDiv.innerHTML = '<p>Data kode pos tidak ditemukan.</p>';
       tableDiv.innerHTML = '';
+      return;
+    }
+
+    if (kec) {
+      if (filtered.length === 1) {
+        const k = filtered[0];
+        resultDiv.innerHTML = `
+          <p><strong>Kode Pos: ${k.kodepos}</strong></p>
+          <p>Kelurahan: ${k.village}, ${kec}, ${kota}, ${prov}</p>
+        `;
+        tableDiv.innerHTML = '';
+      } else {
+        tableDiv.innerHTML = `
+          <table style="width:100%; border-collapse:collapse;">
+            <tr style="background:#f0f0f0;">
+              <th style="padding:8px; border:1px solid #ddd;">Kelurahan</th>
+              <th style="padding:8px; border:1px solid #ddd;">Kode Pos</th>
+            </tr>
+            ${filtered.map(k => `<tr><td style="padding:8px; border:1px solid #ddd;">${k.village}</td><td style="padding:8px; border:1px solid #ddd; font-weight:bold;">${k.kodepos}</td></tr>`).join('')}
+          </table>
+        `;
+        resultDiv.innerHTML = `<p>Ditemukan ${filtered.length} kode pos</p>`;
+      }
     } else {
       tableDiv.innerHTML = `
         <table style="width:100%; border-collapse:collapse;">
           <tr style="background:#f0f0f0;">
+            <th style="padding:8px; border:1px solid #ddd;">Kecamatan</th>
             <th style="padding:8px; border:1px solid #ddd;">Kelurahan</th>
             <th style="padding:8px; border:1px solid #ddd;">Kode Pos</th>
           </tr>
-          ${kelList.map(k => `<tr><td style="padding:8px; border:1px solid #ddd;">${k.kelurahan}</td><td style="padding:8px; border:1px solid #ddd; font-weight:bold;">${k.kodepos}</td></tr>`).join('')}
+          ${filtered.map(k => `<tr><td style="padding:8px; border:1px solid #ddd;">${k.district}</td><td style="padding:8px; border:1px solid #ddd;">${k.village}</td><td style="padding:8px; border:1px solid #ddd; font-weight:bold;">${k.kodepos}</td></tr>`).join('')}
         </table>
       `;
-      resultDiv.innerHTML = `<p>Ditemukan ${kelList.length} kode pos</p>`;
+      resultDiv.innerHTML = `<p>Ditemukan ${filtered.length} kode pos di ${kota}</p>`;
     }
-  } else {
-    let allData = [];
-    Object.entries(postalData[prov][kota]).forEach(([kecName, kels]) => {
-      kels.forEach(k => allData.push({ ...k, kecamatan: kecName }));
-    });
-    
-    tableDiv.innerHTML = `
-      <table style="width:100%; border-collapse:collapse;">
-        <tr style="background:#f0f0f0;">
-          <th style="padding:8px; border:1px solid #ddd;">Kecamatan</th>
-          <th style="padding:8px; border:1px solid #ddd;">Kelurahan</th>
-          <th style="padding:8px; border:1px solid #ddd;">Kode Pos</th>
-        </tr>
-        ${allData.map(k => `<tr><td style="padding:8px; border:1px solid #ddd;">${k.kecamatan}</td><td style="padding:8px; border:1px solid #ddd;">${k.kelurahan}</td><td style="padding:8px; border:1px solid #ddd; font-weight:bold;">${k.kodepos}</td></tr>`).join('')}
-      </table>
-    `;
-    resultDiv.innerHTML = `<p>Ditemukan ${allData.length} kode pos di ${kota}</p>`;
+  } catch (err) {
+    resultDiv.innerHTML = '<p>Gagal mengambil data kode pos. Silakan coba lagi.</p>';
+    tableDiv.innerHTML = '';
   }
 }
 
@@ -287,6 +340,15 @@ function showProducts() {
 // ===== INIT =====
 (async function() {
   await loadData();
-  document.getElementById('provinsi').innerHTML = '<option value="">-- Pilih Provinsi --</option>' + Object.keys(postalData).map(p => `<option value="${p}">${p}</option>`).join('');
+  const provinces = ['Aceh', 'Bali', 'Banten', 'Bengkulu', 'DI Yogyakarta', 'DKI Jakarta',
+    'Gorontalo', 'Jambi', 'Jawa Barat', 'Jawa Tengah', 'Jawa Timur',
+    'Kalimantan Barat', 'Kalimantan Selatan', 'Kalimantan Tengah',
+    'Kalimantan Timur', 'Kalimantan Utara', 'Kepulauan Bangka Belitung',
+    'Kepulauan Riau', 'Lampung', 'Maluku', 'Maluku Utara', 'Nusa Tenggara Barat',
+    'Nusa Tenggara Timur', 'Papua', 'Papua Barat', 'Riau', 'Sulawesi Barat',
+    'Sulawesi Selatan', 'Sulawesi Tengah', 'Sulawesi Tenggara', 'Sulawesi Utara',
+    'Sumatera Barat', 'Sumatera Selatan', 'Sumatera Utara'];
+
+  document.getElementById('provinsi').innerHTML = '<option value="">-- Pilih Provinsi --</option>' + provinces.map(p => `<option value="${p}">${p}</option>`).join('');
   document.getElementById('jenis').innerHTML = '<option value="">-- Pilih Jenis --</option>' + Object.keys(products).map(j => `<option value="${j}">${j.charAt(0).toUpperCase() + j.slice(1)}</option>`).join('');
 })();
