@@ -116,6 +116,26 @@ function clearAll() {
 }
 
 // ===== POSTAL CODE =====
+function normalizeText(value) {
+  return (value || '').toString().trim().toLowerCase();
+}
+
+async function fetchPostalApi(query) {
+  const response = await fetch(`https://kodepos.vercel.app/search/?q=${encodeURIComponent(query)}`);
+  if (!response.ok) throw new Error('Gagal mengambil data kode pos');
+
+  const payload = await response.json();
+  const rows = Array.isArray(payload) ? payload : (Array.isArray(payload.data) ? payload.data : []);
+
+  return rows.map(item => ({
+    province: item.province || '',
+    city: item.city || item.regency || '',
+    district: item.district || '',
+    village: item.village || item.kelurahan || '',
+    kodepos: (item.kodepos || item.code || '').toString()
+  }));
+}
+
 async function updateCity() {
   const prov = document.getElementById('provinsi').value;
   const citySelect = document.getElementById('kota');
@@ -131,14 +151,16 @@ async function updateCity() {
   citySelect.disabled = true;
 
   try {
-    const data = await fetch(`https://kodepos.vercel.app/search/?q=${encodeURIComponent(prov)}`).then(r => {
-      if (!r.ok) throw new Error('Gagal mengambil data kota');
-      return r.json();
-    });
-
-    const uniqueCities = [...new Set(data.map(item => item.city).filter(Boolean))].sort();
+    const data = await fetchPostalApi(prov);
+    const filtered = data.filter(item => normalizeText(item.province) === normalizeText(prov));
+    const uniqueCities = [...new Set(filtered.map(item => item.city).filter(Boolean))].sort();
 
     citySelect.innerHTML = '<option value="">-- Pilih Kota --</option>';
+    if (uniqueCities.length === 0) {
+      citySelect.innerHTML = '<option value="">Data kota tidak ditemukan</option>';
+      return;
+    }
+
     uniqueCities.forEach(kota => {
       const opt = document.createElement('option');
       opt.value = kota;
@@ -164,16 +186,18 @@ async function updateDistrict() {
   if (!kota) return;
 
   try {
-    const data = await fetch(`https://kodepos.vercel.app/search/?q=${encodeURIComponent(kota)}`).then(r => {
-      if (!r.ok) throw new Error('Gagal mengambil data kecamatan');
-      return r.json();
-    });
+    const data = await fetchPostalApi(kota);
 
     const filtered = data.filter(item =>
-      item.city === kota && (!prov || item.province === prov)
+      normalizeText(item.city) === normalizeText(kota) && (!prov || normalizeText(item.province) === normalizeText(prov))
     );
 
     const uniqueDistricts = [...new Set(filtered.map(item => item.district).filter(Boolean))].sort();
+
+    if (uniqueDistricts.length === 0) {
+      districtSelect.innerHTML = '<option value="">Data kecamatan tidak ditemukan</option>';
+      return;
+    }
 
     uniqueDistricts.forEach(kec => {
       const opt = document.createElement('option');
@@ -206,15 +230,12 @@ async function searchPostal() {
 
   try {
     const query = kec || kota;
-    const data = await fetch(`https://kodepos.vercel.app/search/?q=${encodeURIComponent(query)}`).then(r => {
-      if (!r.ok) throw new Error('Gagal mengambil data kode pos');
-      return r.json();
-    });
+    const data = await fetchPostalApi(query);
 
     const filtered = data.filter(item => {
-      const matchProv = item.province === prov;
-      const matchCity = item.city === kota;
-      const matchDistrict = kec ? item.district === kec : true;
+      const matchProv = normalizeText(item.province) === normalizeText(prov);
+      const matchCity = normalizeText(item.city) === normalizeText(kota);
+      const matchDistrict = kec ? normalizeText(item.district) === normalizeText(kec) : true;
       return matchProv && matchCity && matchDistrict;
     });
 
